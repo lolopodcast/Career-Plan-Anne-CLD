@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Graduate Pathways | Sports Affairs × Economics</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Source Sans 3"', '"Noto Sans TC"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
+                    },
+                    colors: {
+                        bcg: {
+                            green: '#175e52',
+                            dark: '#1a1a1a',
+                            gray: '#fafafa',
+                            border: '#e5e7eb',
+                            accent: '#2d8a76',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: background-color 0.3s, color 0.3s; }
+        * { border-radius: 0 !important; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
+        .animate-delay-100 { animation-delay: 0.1s; }
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-300 { animation-delay: 0.3s; }
+        
+        .chart-container { position: relative; width: 100%; height: 300px; }
+        .accordion-content { transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; max-height: 0; opacity: 0; overflow: hidden; }
+        .accordion-content.open { max-height: 1200px; opacity: 1; }
+        
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .group:hover .group-hover\:rotate-y-180 { transform: rotateY(180deg); }
+
+        @keyframes sound-wave { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+        .sound-wave-bar { width: 3px; background-color: currentColor; animation: sound-wave 0.8s ease-in-out infinite; }
+        .sound-wave-bar:nth-child(1) { animation-delay: 0s; }
+        .sound-wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .sound-wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .sound-wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        
+        .tab-active { border-bottom: 3px solid #175e52; color: #175e52; background-color: #f9fafb; }
+        .dark .tab-active { border-bottom: 3px solid #4ade80; color: #4ade80; background-color: #374151; }
+        
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15); }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; }
+        .dark ::-webkit-scrollbar-track { background: #1f2937; }
+        .dark ::-webkit-scrollbar-thumb { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-bcg-gray text-bcg-dark dark:bg-gray-900 dark:text-gray-100 font-sans flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-900 border-b-2 border-bcg-green dark:border-green-600 sticky top-0 z-50 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center cursor-pointer group" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <div class="w-1.5 h-8 bg-bcg-green dark:bg-green-500 mr-4 group-hover:h-10 transition-all duration-300"></div>
+                <h1 class="text-xl font-serif font-bold tracking-tight text-bcg-dark dark:text-white">
+                    STRATEGY <span class="font-sans font-light text-gray-400 dark:text-gray-500">| GRADUATE PATHWAYS</span>
+                </h1>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 text-gray-400 hover:text-bcg-green dark:hover:text-green-400 transition-colors" aria-label="Toggle theme">
+                    <span id="theme-icon" class="text-lg">☾</span>
+                </button>
+                <div class="h-6 w-px bg-gray-300 dark:bg-gray-700"></div>
+                <button id="lang-toggle" class="text-xs font-bold px-3 py-1.5 bg-gray-100 dark:bg-gray-800 hover:bg-bcg-green dark:hover:bg-green-600 hover:text-white transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                    EN / 繁中
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-10 w-full">
+
+        <!-- Hero Section -->
+        <section class="mb-16 opacity-0 animate-fade-in" style="animation-fill-mode: forwards;">
+            <div class="bg-bcg-green/10 dark:bg-green-900/30 border-l-4 border-bcg-green p-4 mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-bcg-green opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bcg-green"></span>
+                    </span>
+                    <p class="text-sm font-semibold text-bcg-green dark:text-green-400 uppercase tracking-widest" data-i18n="target_audience">
+                        Target: Junior Dual Major (Sports Affairs + Economics)
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-8">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-[1.1] text-gray-900 dark:text-white">
+                        <span data-i18n="hero_title_1" class="block">From Theory to Industry Leader</span>
+                        <span class="text-bcg-green dark:text-green-400 font-sans font-light text-2xl md:text-3xl lg:text-4xl mt-4 block" data-i18n="hero_title_2">
+                            Strategic Graduate Pathways in Sports Economics & Law
+                        </span>
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mb-8" data-i18n="hero_desc">
+                        A comprehensive strategic framework designed for dual-major students navigating the intersection of sports administration and economic analysis.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-6 mb-8">
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-serif font-bold text-bcg-green dark:text-green-400">13</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="stat_programs">Programs<br/>Analyzed</span>
+                        </div>
+                        <div class="w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-serif font-bold text-bcg-green dark:text-green-400">4</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="stat_regions">Geographic<br/>Regions</span>
+                        </div>
+                        <div class="w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-serif font-bold text-bcg-green dark:text-green-400">18</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="stat_months">Month<br/>Roadmap</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-4">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg p-6">
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4" data-i18n="quick_nav">Quick Navigation</h3>
+                        <nav class="space-y-2">
+                            <a href="#timeline-section" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 hover:bg-bcg-green/10 dark:hover:bg-green-900/30 transition-colors group">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-bcg-green dark:group-hover:text-green-400" data-i18n="nav_timeline">Application Roadmap</span>
+                                <span class="text-bcg-green dark:text-green-400">→</span>
+                            </a>
+                            <a href="#insights-section" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 hover:bg-bcg-green/10 dark:hover:bg-green-900/30 transition-colors group">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-bcg-green dark:group-hover:text-green-400" data-i18n="nav_insights">Strategic Insights</span>
+                                <span class="text-bcg-green dark:text-green-400">→</span>
+                            </a>
+                            <a href="#dashboard" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 hover:bg-bcg-green/10 dark:hover:bg-green-900/30 transition-colors group">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-bcg-green dark:group-hover:text-green-400" data-i18n="nav_programs">Program Directory</span>
+                                <span class="text-bcg-green dark:text-green-400">→</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-gray-300 dark:border-gray-700 pt-8 mt-8">
+                <div class="pr-6 border-r border-gray-200 dark:border-gray-700 pb-6 md:pb-0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                            <span class="text-bcg-green dark:text-green-400 text-lg">🎓</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_elite_head">Elite Academia</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_elite_desc">Chicago, Harvard, Stanford</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 border-r border-gray-200 dark:border-gray-700 py-6 md:py-0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                            <span class="text-bcg-green dark:text-green-400 text-lg">🏐</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_vb_head">Market Focus</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_vb_desc">Volleyball Economics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pl-6 pt-6 md:pt-0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                            <span class="text-bcg-green dark:text-green-400 text-lg">👴</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_silver_head">Future Trend</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_silver_desc">Silver Economy Strategy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="mb-16 opacity-0 animate-fade-in animate-delay-100" style="animation-fill-mode: forwards;" id="timeline-section">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between pb-4 border-b border-gray-300 dark:border-gray-600 mb-8">
+                <div>
+                    <span class="text-xs font-bold text-bcg-green dark:text-green-400 uppercase tracking-widest mb-2 block">Phase Planning</span>
+                    <h3 class="text-2xl font-bold font-serif text-gray-900 dark:text-white" data-i18n="section_timeline">Application Roadmap: Junior Year to Graduation</h3>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0" data-i18n="timeline_hint">Hover cards to view action items</p>
+            </div>
+            
+            <div class="flex items-center justify-between mb-8 px-4">
+                <div class="flex-1 flex items-center">
+                    <div class="w-8 h-8 bg-bcg-green text-white flex items-center justify-center text-xs font-bold">1</div>
+                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
+                </div>
+                <div class="flex-1 flex items-center">
+                    <div class="w-8 h-8 bg-bcg-green/60 text-white flex items-center justify-center text-xs font-bold">2</div>
+                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
+                </div>
+                <div class="flex-1 flex items-center">
+                    <div class="w-8 h-8 bg-bcg-green/40 text-white flex items-center justify-center text-xs font-bold">3</div>
+                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-bcg-green/20 dark:bg-green-900/50 text-bcg-green dark:text-green-400 flex items-center justify-center text-xs font-bold border-2 border-bcg-green/40">4</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="timeline-container"></div>
+        </section>
+
+        <!-- Strategic Insights Section -->
+        <section class="mb-16 opacity-0 animate-fade-in animate-delay-200" style="animation-fill-mode: forwards;" id="insights-section">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gray-300 dark:border-gray-600 mb-0 gap-4 md:gap-0 pb-0">
+                <div class="flex items-end gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-bcg-green dark:text-green-400 uppercase tracking-widest mb-2 block">Research Deep-Dive</span>
+                        <h3 class="text-2xl font-bold font-serif text-gray-900 dark:text-white" data-i18n="section_research">Strategic Insights</h3>
+                    </div>
+                    
+                    <button id="tts-btn" class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 hover:border-bcg-green dark:hover:border-green-500 bg-white dark:bg-gray-800 text-xs font-bold uppercase tracking-widest transition-all mb-1 group">
+                        <span id="tts-icon" class="text-bcg-green dark:text-green-400 transition-transform group-hover:scale-110">▶</span>
+                        <span id="tts-label" class="dark:text-gray-200">READ INSIGHT</span>
+                        <div id="tts-indicator" class="hidden items-center gap-0.5 h-4 text-green-500">
+                            <div class="sound-wave-bar"></div>
+                            <div class="sound-wave-bar"></div>
+                            <div class="sound-wave-bar"></div>
+                            <div class="sound-wave-bar"></div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="flex space-x-1 overflow-x-auto w-full md:w-auto pb-0" id="research-tabs-nav"></div>
+            </div>
+            
+            <div id="research-content" class="bg-white dark:bg-gray-800 p-8 border border-t-0 border-gray-200 dark:border-gray-700 shadow-sm"></div>
+        </section>
+
+        <!-- Glossary Section -->
+        <section class="mb-16 opacity-0 animate-fade-in animate-delay-300" style="animation-fill-mode: forwards;">
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+                <div class="bg-gray-50 dark:bg-gray-900 px-8 py-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">📚</span>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400" data-i18n="glossary_section">Core Terminology</h4>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="md:w-1/3">
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="glossary_label">Select Term</label>
+                            <select id="glossary-select" class="w-full bg-gray-50 dark:bg-gray-900 border-b-2 border-gray-300 dark:border-gray-600 focus:border-bcg-green dark:focus:border-green-500 outline-none py-3 font-serif text-base dark:text-white cursor-pointer transition-colors"></select>
+                        </div>
+                        <div class="md:w-2/3 md:border-l border-gray-200 dark:border-gray-700 md:pl-8">
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3" data-i18n="glossary_def_label">Definition</label>
+                            <p id="glossary-def" class="text-lg font-serif text-bcg-dark dark:text-gray-200 leading-relaxed min-h-[4rem]"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Dashboard -->
+        <section id="dashboard" class="opacity-0 animate-fade-in" style="animation-fill-mode: forwards; animation-delay: 0.4s;">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between pb-4 border-b border-gray-300 dark:border-gray-600 mb-8">
+                <div>
+                    <span class="text-xs font-bold text-bcg-green dark:text-green-400 uppercase tracking-widest mb-2 block">Program Analysis</span>
+                    <h3 class="text-2xl font-bold font-serif text-gray-900 dark:text-white" data-i18n="list_header">Program Directory & Analysis</h3>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 sticky top-24 shadow-sm">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2" data-i18n="filter_header">
+                            <span>🎯</span> Refine View
+                        </h4>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-xs font-bold mb-2 text-bcg-green dark:text-green-400" data-i18n="filter_track">ACADEMIC TRACK</label>
+                                <select id="track-select" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 p-3 text-sm dark:text-white focus:border-bcg-green outline-none transition-colors"></select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold mb-2 text-bcg-green dark:text-green-400" data-i18n="filter_region">REGION</label>
+                                <select id="region-select" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 p-3 text-sm dark:text-white focus:border-bcg-green outline-none transition-colors"></select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold mb-2 text-bcg-green dark:text-green-400" data-i18n="filter_sport">SECTOR</label>
+                                <select id="sport-select" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 p-3 text-sm dark:text-white focus:border-bcg-green outline-none transition-colors"></select>
+                            </div>
+                            <button id="reset-btn" class="w-full py-3 bg-gray-100 dark:bg-gray-700 hover:bg-bcg-green hover:text-white dark:hover:bg-green-600 text-xs font-bold uppercase tracking-widest transition-all text-gray-800 dark:text-white flex items-center justify-center gap-2" data-i18n="btn_reset">
+                                <span>↺</span> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
+                        <h4 class="text-xs font-bold text-center mb-4 uppercase tracking-widest text-gray-400" data-i18n="chart_radar">Competency Matrix</h4>
+                        <div class="chart-container"><canvas id="radarChart"></canvas></div>
+                    </div>
+                    
+                    <div class="bg-bcg-green dark:bg-green-700 text-white px-5 py-4 text-xs font-bold uppercase tracking-widest flex justify-between items-center shadow-sm">
+                        <span data-i18n="list_count_label">Programs Identified</span>
+                        <div class="flex items-center gap-3">
+                            <span id="count-display" class="text-2xl font-serif">0</span>
+                            <span class="text-green-200 text-[10px]" data-i18n="of_total">/ 13 total</span>
+                        </div>
+                    </div>
+                    
+                    <div id="uni-list" class="space-y-4"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bcg-dark dark:bg-black text-white py-10 px-6 mt-12 border-t-4 border-bcg-green">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-1 h-6 bg-bcg-green"></div>
+                        <span class="font-serif font-bold text-lg">Strategic Graduate Pathways</span>
+                    </div>
+                    <p class="text-gray-400 text-sm" data-i18n="footer_desc">A research-based guide for dual-major students in Sports Affairs and Economics</p>
+                    <p class="text-gray-500 text-xs mt-2" id="version-date"></p>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-gray-400 text-sm mb-1" data-i18n="footer_editor">Academic Editor</p>
+                    <a href="https://www.ibs.ncnu.edu.tw/index.php/faculty/tenured-professor/299-smlo" target="_blank" class="text-bcg-accent hover:text-green-400 font-bold transition-colors">Prof. Shihmin Lo</a>
+                    <p class="text-gray-500 text-xs mt-2">© 2026 All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const state = { lang: 'en', theme: 'light', activeTab: 'elite', filters: { track: 'all', region: 'all', sport: 'all' }, expandedCard: null, selectedTerm: 'antitrust', ttsSupported: false, voices: [] };
+
+        const dictionary = {
+            en: {
+                target_audience: "Target: Junior Dual Major (Sports Affairs + Economics)",
+                hero_title_1: "From Theory to Industry Leader",
+                hero_title_2: "Strategic Graduate Pathways in Sports Economics & Law",
+                hero_desc: "A comprehensive strategic framework designed for dual-major students navigating the intersection of sports administration and economic analysis.",
+                stat_programs: "Programs\nAnalyzed", stat_regions: "Geographic\nRegions", stat_months: "Month\nRoadmap",
+                quick_nav: "Quick Navigation", nav_timeline: "Application Roadmap", nav_insights: "Strategic Insights", nav_programs: "Program Directory",
+                tag_elite_head: "Elite Academia", tag_elite_desc: "Chicago, Harvard, Stanford",
+                tag_vb_head: "Market Focus", tag_vb_desc: "Volleyball Economics",
+                tag_silver_head: "Future Trend", tag_silver_desc: "Silver Economy Strategy",
+                section_timeline: "Application Roadmap: Junior Year to Graduation", timeline_hint: "Hover cards to view action items",
+                section_research: "Strategic Insights",
+                glossary_section: "Core Terminology", glossary_label: "Select Term", glossary_def_label: "Definition", glossary_default: "Select a term to view its definition.",
+                filter_header: "Refine View", filter_track: "Academic Track", filter_region: "Geographic Region", filter_sport: "Sector Specialization",
+                chart_radar: "Aggregate Competency Profile", chart_vb: "Market Analysis: League Models", chart_elite: "Curriculum Focus", chart_silver: "Healthcare Savings Projection", chart_law: "Legal Practice Areas",
+                list_header: "Program Directory & Analysis", list_count_label: "Programs Identified", of_total: "/ 13 total",
+                tab_elite: "Elite Academic", tab_vb: "Volleyball Sector", tab_silver: "Silver Economy", tab_law: "Sports Law",
+                btn_reset: "Reset", lbl_tuition: "Investment", lbl_duration: "Duration", lbl_courses: "Curriculum", lbl_alumni: "Network", lbl_career: "Career Path", lbl_web: "Portal",
+                tts_read: "READ INSIGHT", tts_stop: "STOP", tts_unavailable: "TTS Unavailable",
+                sport_all: "All Sectors", sport_vb: "Volleyball", sport_bb: "Baseball", sport_bkb: "Basketball", sport_cyc: "Cycling", sport_yoga: "Yoga/Fitness",
+                track_all: "All Tracks", track_elite: "Elite Academic (PhD)", track_applied: "Applied Industry (Master)",
+                region_all: "Global", region_usa: "USA", region_oce: "Oceania", region_asia: "Asia",
+                unit_score: "Score (0-10)", unit_pct: "Percentage (%)", unit_index: "Index (2025=100)", unit_cases: "Distribution (%)",
+                card_front_hint: "HOVER TO VIEW ACTIONS",
+                footer_desc: "A research-based guide for dual-major students in Sports Affairs and Economics",
+                footer_editor: "Academic Editor",
+                no_results: "No programs match your criteria. Try adjusting filters."
+            },
+            zh: {
+                target_audience: "專屬策略：國際體育事務與經濟系雙主修大三學生",
+                hero_title_1: "從理論巔峰到產業前沿",
+                hero_title_2: "全球體育經濟與法律深造策略",
+                hero_desc: "為雙主修學生量身打造的全方位策略架構，協助你在體育行政與經濟分析的交匯處找到最佳發展路徑。",
+                stat_programs: "分析\n學程", stat_regions: "地理\n區域", stat_months: "月份\n規劃",
+                quick_nav: "快速導覽", nav_timeline: "申請路徑圖", nav_insights: "策略洞察", nav_programs: "學程目錄",
+                tag_elite_head: "頂尖學術", tag_elite_desc: "常春藤盟校、芝加哥大學",
+                tag_vb_head: "市場聚焦", tag_vb_desc: "排球經濟學",
+                tag_silver_head: "未來趨勢", tag_silver_desc: "銀髮經濟策略",
+                section_timeline: "申請準備路徑圖：大三下至畢業", timeline_hint: "滑鼠懸停查看行動方案",
+                section_research: "策略洞察",
+                glossary_section: "核心術語庫", glossary_label: "選擇術語", glossary_def_label: "定義與背景", glossary_default: "請選擇術語查看定義。",
+                filter_header: "篩選條件", filter_track: "學術路徑", filter_region: "地理區域", filter_sport: "產業專項",
+                chart_radar: "核心能力矩陣", chart_vb: "市場分析：聯賽模型", chart_elite: "課程比重分析", chart_silver: "醫療節省預估", chart_law: "法律實務領域",
+                list_header: "學程名錄與分析", list_count_label: "符合條件", of_total: "/ 共 13 學程",
+                tab_elite: "菁英學術路徑", tab_vb: "排球產業專題", tab_silver: "銀髮經濟趨勢", tab_law: "運動法律與合規",
+                btn_reset: "重置", lbl_tuition: "預估投資", lbl_duration: "修業年限", lbl_courses: "核心課程", lbl_alumni: "校友網絡", lbl_career: "職涯路徑", lbl_web: "官方網站",
+                tts_read: "朗讀洞察", tts_stop: "停止", tts_unavailable: "語音不支援",
+                sport_all: "所有產業", sport_vb: "排球", sport_bb: "棒球", sport_bkb: "籃球", sport_cyc: "自行車", sport_yoga: "瑜珈/健身",
+                track_all: "所有路徑", track_elite: "菁英學術 (PhD導向)", track_applied: "產業實務 (Master導向)",
+                region_all: "全球", region_usa: "美國", region_oce: "紐澳", region_asia: "亞洲",
+                unit_score: "評分 (0-10)", unit_pct: "佔比 (%)", unit_index: "指數 (2025=100)", unit_cases: "案件分佈 (%)",
+                card_front_hint: "懸停查看行動方針",
+                footer_desc: "為國際體育事務與經濟系雙主修學生設計的研究型指南",
+                footer_editor: "學術編輯",
+                no_results: "沒有符合條件的學程，請調整篩選條件。"
+            }
+        };
+
+        const timelineData = [
+            { period_en: "Junior Spring", period_zh: "大三下學期", date_en: "Feb - Jun", date_zh: "2月-6月", title_en: "Academic & Research Foundation", title_zh: "學術與研究奠基", desc_en: "• Maintain high GPA in Microeconomics & Statistics\n• Join faculty research projects on Sports Data\n• Begin literature review on target topics", desc_zh: "• 維持個體經濟與統計學的高 GPA\n• 加入教授的運動數據研究計畫\n• 開始針對目標領域進行文獻回顧", icon: "📚" },
+            { period_en: "Junior Summer", period_zh: "大三升大四暑假", date_en: "Jul - Aug", date_zh: "7月-8月", title_en: "Testing & Industry Exposure", title_zh: "考試與實習衝刺", desc_en: "• Intensive GRE/GMAT preparation\n• Internship at sports leagues (CPBL/PLG)\n• Network with industry professionals", desc_zh: "• GRE/GMAT 密集準備\n• 職業聯盟實習 (CPBL/PLG/法律事務所)\n• 建立產業人脈網絡", icon: "🎯" },
+            { period_en: "Senior Fall", period_zh: "大四上學期", date_en: "Sep - Dec", date_zh: "9月-12月", title_en: "Application Strategy", title_zh: "申請送件策略", desc_en: "• Draft SOP highlighting dual-major value\n• Submit Round 1 applications (US)\n• Request recommendation letters", desc_zh: "• 撰寫 SOP 強調雙主修獨特價值\n• 遞交美國學校第一輪申請\n• 聯繫推薦信", icon: "✍️" },
+            { period_en: "Senior Spring", period_zh: "大四下學期", date_en: "Jan - Jun", date_zh: "1月-6月", title_en: "Decision & Funding", title_zh: "決策與獎學金", desc_en: "• Prepare for interviews\n• Apply for MOE scholarships\n• Finalize school choice & visa", desc_zh: "• 面試準備\n• 申請教育部留學獎學金\n• 確認學校並辦理簽證", icon: "🎓" }
+        ];
+
+        const glossaryData = [
+            { id: 'antitrust', term_en: 'Antitrust Law', term_zh: '反托拉斯法', def_en: "Legal framework promoting market competition. Critical in challenging professional league monopolies.", def_zh: "促進市場競爭的法律架構。常用於挑戰職業聯盟的壟斷地位。" },
+            { id: 'moneyball', term_en: 'Sabermetrics', term_zh: '賽伯計量學', def_en: "Statistical analysis to identify undervalued assets in player markets.", def_zh: "利用統計分析在球員市場中尋找被低估的資產。" },
+            { id: 'cba', term_en: 'CBA', term_zh: '勞資協議', def_en: "Collective Bargaining Agreement determining salary caps and revenue sharing.", def_zh: "決定薪資上限與收益分享機制的勞資雙方協議。" },
+            { id: 'silver', term_en: 'Silver Economy', term_zh: '銀髮經濟', def_en: "Economic activities driven by the needs of people aged 50+.", def_zh: "由50歲以上人口需求驅動的經濟活動。" },
+            { id: 'posting', term_en: 'Posting System', term_zh: '入札制度', def_en: "Transfer system between MLB and NPB/KBO allowing players to sign with US teams.", def_zh: "連接美日韓職棒的球員轉隊制度。" },
+            { id: 'nil', term_en: 'NIL', term_zh: '姓名形象權', def_en: "Name, Image, and Likeness rights allowing college athletes to monetize their brand.", def_zh: "允許大學運動員將個人品牌變現的權利。" }
+        ];
+
+        const researchData = {
+            elite: { title_en: "The Elite Academic Track: Economics & Law", title_zh: "菁英學術路徑：經濟與法律", content_en: "Focus on Rule-Making. Utilize the powerful toolkit of Mechanism Design (UChicago) to optimize ticket auction systems, or apply Game Theory to model salary arbitration outcomes. Harvard Law's negotiation frameworks provide the strategic edge for player contract structuring.", content_zh: "專注於規則制定。利用芝加哥大學的機制設計 (Mechanism Design) 理論來優化票務拍賣系統，或應用賽局理論 (Game Theory) 模擬薪資仲裁結果。哈佛法學院的談判架構則為球員合約結構提供了策略優勢。", chartId: "chart_elite", unitId: "unit_pct" },
+            vb: { title_en: "Volleyball Economics: Global vs Local Models", title_zh: "排球經濟專題：全球與在地模式", content_en: "A comparative economic analysis of three distinct models: The US Franchise Model (PVF/LOVB), Japan's SV.League transformation, and Taiwan's TVL transitional challenges. Key metrics include Fan Engagement ROI and professionalization marginal utility.", content_zh: "針對三種不同模式的比較經濟分析：美國特許經營模式 (PVF/LOVB)、日本 SV.League 的轉型、以及台灣 TVL 的過渡期挑戰。關鍵指標包括粉絲互動投資報酬率及職業化的邊際效用。", chartId: "chart_vb", unitId: "unit_score" },
+            silver: { title_en: "Silver Economy & Health Policy Strategy", title_zh: "銀髮經濟與健康政策策略", content_en: "As Taiwan approaches a Super-Aged Society (2025), sports transition from entertainment to preventive medicine. The core thesis involves Cost-Benefit Analysis of 'Exercise Prescriptions' versus long-term NHI expenditures.", content_zh: "隨著台灣邁入超高齡社會 (2025)，體育的角色從娛樂轉變為預防醫學。核心論述涉及「運動處方」與長期健保支出之間的成本效益分析。", chartId: "chart_silver", unitId: "unit_index" },
+            law: { title_en: "Sports Law & Compliance: Emerging Risks", title_zh: "運動法律與合規：新興風險", content_en: "Critical areas include: Classifying athlete employment status and tax implications, designing liability waivers for elderly participants, and managing IP rights in the digital streaming era.", content_zh: "關鍵領域包括：運動員僱傭身分認定及稅務影響、高齡參與者免責條款設計、以及數位串流時代的智財權管理。", chartId: "chart_law", unitId: "unit_cases" }
+        };
+
+        const universities = [
+            { id: 1, name_en: "University of Chicago", name_zh: "芝加哥大學", region: "USA", track: "Elite", sports: ["Baseball", "Marathon"], tuition: "$65k/yr", duration: "1-2 Yr", courses_en: "Price Theory, Antitrust", courses_zh: "價格理論, 反托拉斯", alumni_en: "Gary Becker (Nobel)", alumni_zh: "Gary Becker (諾貝爾獎)", career_en: "Econ Consulting", career_zh: "經濟諮詢", web: "https://economics.uchicago.edu/", scores: {theory:10, practice:4, legal:10, health:5} },
+            { id: 2, name_en: "Harvard University", name_zh: "哈佛大學", region: "USA", track: "Elite", sports: ["Basketball", "Baseball"], tuition: "$70k/yr", duration: "1-2 Yr", courses_en: "Sports Law Clinic, Negotiation", courses_zh: "運動法律診所, 談判", alumni_en: "League Commissioners", alumni_zh: "聯盟總裁", career_en: "League Counsel", career_zh: "聯盟法務", web: "https://hls.harvard.edu/", scores: {theory:9, practice:7, legal:10, health:6} },
+            { id: 3, name_en: "Stanford University", name_zh: "史丹佛大學", region: "USA", track: "Elite", sports: ["Cycling", "Yoga"], tuition: "$68k/yr", duration: "2 Yr", courses_en: "Sports Econ, Innovation", courses_zh: "體育經濟, 創新", alumni_en: "Roger Noll", alumni_zh: "Roger Noll", career_en: "Sports Tech VC", career_zh: "運動科技創投", web: "https://siepr.stanford.edu/", scores: {theory:10, practice:6, legal:9, health:8} },
+            { id: 4, name_en: "Syracuse University", name_zh: "雪城大學", region: "USA", track: "Applied", sports: ["Basketball", "Baseball"], tuition: "$58k/yr", duration: "1-2 Yr", courses_en: "Sport Analytics, Media Rights", courses_zh: "運動分析, 媒體權利", alumni_en: "David Falk", alumni_zh: "David Falk", career_en: "Rights Manager", career_zh: "版權經理", web: "https://falk.syr.edu/", scores: {theory:8, practice:9, legal:7, health:4} },
+            { id: 5, name_en: "Univ. of Nebraska-Lincoln", name_zh: "內布拉斯加大學林肯分校", region: "USA", track: "Applied", sports: ["Volleyball"], tuition: "$35k/yr", duration: "1.5 Yr", courses_en: "Fan Engagement, Event Mgmt", courses_zh: "粉絲互動, 賽事管理", alumni_en: "NCAA Directors", alumni_zh: "NCAA 總監", career_en: "Volleyball Ops", career_zh: "排球營運", web: "https://business.unl.edu/", scores: {theory:7, practice:10, legal:5, health:5} },
+            { id: 6, name_en: "Rice University", name_zh: "萊斯大學", region: "USA", track: "Applied", sports: ["Baseball"], tuition: "$55k/yr", duration: "1-2 Yr", courses_en: "Econometrics, Moneyball", courses_zh: "計量經濟, 魔球", alumni_en: "MLB Analytics Heads", alumni_zh: "MLB 數據主管", career_en: "Data Analyst", career_zh: "數據分析師", web: "https://sport.rice.edu/", scores: {theory:9, practice:8, legal:4, health:4} },
+            { id: 7, name_en: "University of Florida", name_zh: "佛羅里達大學", region: "USA", track: "Applied", sports: ["Volleyball", "Fitness"], tuition: "$40k/yr", duration: "2 Yr", courses_en: "Sport Law, Human Performance", courses_zh: "運動法律, 人類表現", alumni_en: "SEC Execs", alumni_zh: "SEC 高管", career_en: "Wellness Director", career_zh: "健康總監", web: "https://hhp.ufl.edu/", scores: {theory:8, practice:8, legal:8, health:9} },
+            { id: 8, name_en: "University of Oregon", name_zh: "奧勒岡大學", region: "USA", track: "Applied", sports: ["Marathon", "Basketball"], tuition: "$60k/yr", duration: "2 Yr", courses_en: "Sponsorship, Brand Strategy", courses_zh: "贊助, 品牌策略", alumni_en: "Nike VPs", alumni_zh: "Nike 副總裁", career_en: "Brand Manager", career_zh: "品牌經理", web: "https://business.uoregon.edu/", scores: {theory:7, practice:10, legal:6, health:6} },
+            { id: 9, name_en: "NUS Singapore", name_zh: "新加坡國立大學", region: "Asia", track: "Applied", sports: ["Badminton", "TableTennis"], tuition: "$45k/yr", duration: "1-2 Yr", courses_en: "Public Policy, Smart Nation", courses_zh: "公共政策, 智慧國家", alumni_en: "Gov Ministers", alumni_zh: "政府部長", career_en: "Policy Advisor", career_zh: "政策顧問", web: "https://lkyspp.nus.edu.sg/", scores: {theory:9, practice:7, legal:6, health:7} },
+            { id: 10, name_en: "Waseda University", name_zh: "早稻田大學", region: "Asia", track: "Applied", sports: ["Baseball", "Volleyball"], tuition: "¥1.5M/yr", duration: "2 Yr", courses_en: "Sport Policy, Aging Society", courses_zh: "體育政策, 高齡社會", alumni_en: "J-League Execs", alumni_zh: "J-League 高層", career_en: "Policy Maker", career_zh: "政策制定", web: "https://www.waseda.jp/", scores: {theory:8, practice:9, legal:6, health:9} },
+            { id: 11, name_en: "University of Tsukuba", name_zh: "筑波大學", region: "Asia", track: "Applied", sports: ["Volleyball", "Yoga"], tuition: "¥535k/yr", duration: "2 Yr", courses_en: "Biomechanics, Coaching", courses_zh: "生物力學, 教練學", alumni_en: "Olympic Medalists", alumni_zh: "奧運獎牌得主", career_en: "Researcher", career_zh: "研究員", web: "http://tias.tsukuba.ac.jp/", scores: {theory:8, practice:8, legal:5, health:10} },
+            { id: 12, name_en: "Seoul National Univ.", name_zh: "首爾大學", region: "Asia", track: "Applied", sports: ["Badminton"], tuition: "Scholarship", duration: "1.5 Yr", courses_en: "Sport Dev, Governance", courses_zh: "運動發展, 治理", alumni_en: "Global Admins", alumni_zh: "全球行政人員", career_en: "Int'l Fed Staff", career_zh: "國際總會職員", web: "http://dtm.snu.ac.kr/", scores: {theory:9, practice:7, legal:7, health:6} },
+            { id: 13, name_en: "University of Queensland", name_zh: "昆士蘭大學", region: "Oceania", track: "Applied", sports: ["Cycling", "Yoga"], tuition: "$45k/yr", duration: "1.5 Yr", courses_en: "Health Econ, Policy", courses_zh: "健康經濟, 政策", alumni_en: "2032 Comm Staff", alumni_zh: "2032 籌委會", career_en: "Impact Analyst", career_zh: "影響分析師", web: "https://hmns.uq.edu.au/", scores: {theory:9, practice:7, legal:6, health:10} }
+        ];
+
+        let activeChart = null, radarChart = null, synthesis = null, currentUtterance = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('version-date').textContent = `Last updated: ${new Date().toISOString().split('T')[0]}`;
+            initTTS();
+            initApp();
+        });
+
+        function initTTS() {
+            if ('speechSynthesis' in window) {
+                synthesis = window.speechSynthesis;
+                state.ttsSupported = true;
+                const loadVoices = () => { state.voices = synthesis.getVoices(); };
+                if (synthesis.onvoiceschanged !== undefined) synthesis.onvoiceschanged = loadVoices;
+                loadVoices();
+                let attempts = 0;
+                const poll = setInterval(() => { loadVoices(); if (state.voices.length > 0 || ++attempts > 20) clearInterval(poll); }, 100);
+            }
+        }
+
+        function initApp() {
+            initSettings();
+            initGlossary();
+            populateSelects();
+            renderTimeline();
+            renderResearchTabs();
+            renderDashboard();
+            updateText();
+        }
+
+        function initSettings() {
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('lang-toggle').addEventListener('click', toggleLang);
+            document.getElementById('tts-btn').addEventListener('click', toggleReader);
+            document.getElementById('reset-btn').addEventListener('click', resetFilters);
+            ['track', 'region', 'sport'].forEach(id => document.getElementById(`${id}-select`).addEventListener('change', e => { state.filters[id] = e.target.value; renderDashboard(); }));
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            state.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            document.getElementById('theme-icon').textContent = state.theme === 'dark' ? '☀' : '☾';
+            renderResearchChart();
+            renderRadar(filterUniversities());
+        }
+
+        function toggleLang() {
+            state.lang = state.lang === 'en' ? 'zh' : 'en';
+            stopReader();
+            updateText();
+            renderTimeline();
+            initGlossary();
+            populateSelects();
+            renderResearchTabs();
+            renderDashboard();
+        }
+
+        function updateText() {
+            const dict = dictionary[state.lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (dict[key]) el.textContent = dict[key]; });
+            updateReaderUI(false);
+        }
+
+        function populateSelects() {
+            const opts = (arr, prefix) => arr.map(x => `<option value="${x.val}">${dictionary[state.lang][prefix + x.key]}</option>`).join('');
+            document.getElementById('track-select').innerHTML = opts([{val:'all',key:'track_all'},{val:'Elite',key:'track_elite'},{val:'Applied',key:'track_applied'}], '');
+            document.getElementById('region-select').innerHTML = opts([{val:'all',key:'region_all'},{val:'USA',key:'region_usa'},{val:'Asia',key:'region_asia'},{val:'Oceania',key:'region_oce'}], '');
+            document.getElementById('sport-select').innerHTML = opts([{val:'all',key:'sport_all'},{val:'Volleyball',key:'sport_vb'},{val:'Baseball',key:'sport_bb'},{val:'Basketball',key:'sport_bkb'},{val:'Cycling',key:'sport_cyc'},{val:'Yoga',key:'sport_yoga'}], '');
+        }
+
+        function initGlossary() {
+            const sel = document.getElementById('glossary-select');
+            sel.innerHTML = `<option value="">${dictionary[state.lang].glossary_default}</option>` + glossaryData.map(g => `<option value="${g.id}">${state.lang === 'zh' ? g.term_zh + ' (' + g.term_en + ')' : g.term_en}</option>`).join('');
+            if (state.selectedTerm) { sel.value = state.selectedTerm; const item = glossaryData.find(x => x.id === state.selectedTerm); document.getElementById('glossary-def').textContent = item ? (state.lang === 'zh' ? item.def_zh : item.def_en) : ''; }
+            sel.onchange = (e) => { state.selectedTerm = e.target.value; const item = glossaryData.find(x => x.id === e.target.value); document.getElementById('glossary-def').textContent = item ? (state.lang === 'zh' ? item.def_zh : item.def_en) : ''; };
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            const isZh = state.lang === 'zh';
+            const hint = dictionary[state.lang].card_front_hint;
+            container.innerHTML = timelineData.map((t, i) => `
+                <div class="group h-72 w-full perspective-1000 cursor-pointer">
+                    <div class="relative h-full w-full transition-all duration-700 transform-style-3d group-hover:rotate-y-180">
+                        <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col">
+                            <div class="h-1 bg-bcg-green" style="width: ${(i + 1) * 25}%"></div>
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-start justify-between mb-4"><span class="text-3xl">${t.icon}</span><span class="text-xs font-mono text-gray-400">${isZh ? t.date_zh : t.date_en}</span></div>
+                                <span class="text-xs font-bold text-bcg-green dark:text-green-400 tracking-widest uppercase mb-2 block">${isZh ? t.period_zh : t.period_en}</span>
+                                <h4 class="text-lg font-serif font-bold text-bcg-dark dark:text-white leading-tight flex-grow">${isZh ? t.title_zh : t.title_en}</h4>
+                                <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700"><span class="text-[10px] uppercase tracking-widest text-gray-400">${hint}</span></div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-bcg-green dark:bg-green-800 shadow-lg flex flex-col text-white">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/20"><span class="text-xl">${t.icon}</span><h4 class="text-sm font-bold uppercase tracking-widest opacity-90">Action Plan</h4></div>
+                                <p class="text-sm leading-relaxed whitespace-pre-line font-sans flex-grow">${isZh ? t.desc_zh : t.desc_en}</p>
+                                <div class="mt-auto pt-3 text-[10px] uppercase tracking-widest opacity-60">Phase ${i + 1} of 4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function resetFilters() { state.filters = { track: 'all', region: 'all', sport: 'all' }; document.getElementById('track-select').value = 'all'; document.getElementById('region-select').value = 'all'; document.getElementById('sport-select').value = 'all'; renderDashboard(); }
+
+        function renderResearchTabs() {
+            const nav = document.getElementById('research-tabs-nav');
+            const content = document.getElementById('research-content');
+            const tabs = ['elite', 'vb', 'silver', 'law'];
+            nav.innerHTML = tabs.map(id => `<button onclick="switchTab('${id}')" class="px-5 py-3 font-serif font-bold text-xs uppercase tracking-widest transition-all whitespace-nowrap ${state.activeTab === id ? 'tab-active' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'}">${dictionary[state.lang]['tab_' + id]}</button>`).join('');
+            const data = researchData[state.activeTab];
+            const title = state.lang === 'zh' ? data.title_zh : data.title_en;
+            const text = state.lang === 'zh' ? data.content_zh : data.content_en;
+            const chartTitle = dictionary[state.lang][data.chartId];
+            content.innerHTML = `<div class="flex flex-col lg:flex-row gap-10"><div class="lg:w-1/2"><h4 class="text-2xl font-serif font-bold mb-4 text-bcg-green dark:text-green-400">${title}</h4><p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed font-sans">${text}</p></div><div class="lg:w-1/2 bg-gray-50 dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-700"><h5 class="text-xs font-bold text-center mb-4 uppercase text-gray-400 tracking-widest">${chartTitle}</h5><div class="chart-container"><canvas id="researchChart"></canvas></div></div></div>`;
+            setTimeout(renderResearchChart, 50);
+        }
+
+        window.switchTab = (id) => { state.activeTab = id; stopReader(); renderResearchTabs(); };
+
+        function toggleReader() { if (!state.ttsSupported) { alert(dictionary[state.lang].tts_unavailable); return; } if (synthesis.speaking) stopReader(); else startReader(); }
+
+        function stopReader() { if (synthesis) synthesis.cancel(); currentUtterance = null; updateReaderUI(false); }
+
+        function startReader() {
+            if (!synthesis) return;
+            synthesis.cancel();
+            const data = researchData[state.activeTab];
+            const title = state.lang === 'zh' ? data.title_zh : data.title_en;
+            const text = state.lang === 'zh' ? data.content_zh : data.content_en;
+            currentUtterance = new SpeechSynthesisUtterance(title + ". " + text);
+            currentUtterance.lang = state.lang === 'zh' ? 'zh-TW' : 'en-GB';
+            currentUtterance.rate = 0.9;
+            const voices = synthesis.getVoices();
+            let voice = null;
+            if (state.lang === 'zh') {
+                voice = voices.find(v => v.name.includes('Yating')) || voices.find(v => v.name.includes('Mei-Jia')) || voices.find(v => v.lang === 'zh-TW') || voices.find(v => v.lang.startsWith('zh'));
+            } else {
+                voice = voices.find(v => v.name.includes('Daniel') && v.lang.includes('en-GB')) || voices.find(v => v.name.includes('Google UK English Male')) || voices.find(v => v.lang === 'en-GB') || voices.find(v => v.lang.startsWith('en'));
+            }
+            if (voice) currentUtterance.voice = voice;
+            currentUtterance.onend = () => { updateReaderUI(false); currentUtterance = null; };
+            currentUtterance.onerror = () => { updateReaderUI(false); currentUtterance = null; };
+            updateReaderUI(true);
+            synthesis.speak(currentUtterance);
+            // Chrome keepalive fix
+            const keepAlive = setInterval(() => { if (!synthesis.speaking) clearInterval(keepAlive); else { synthesis.pause(); synthesis.resume(); } }, 10000);
+        }
+
+        function updateReaderUI(isReading) {
+            const icon = document.getElementById('tts-icon');
+            const label = document.getElementById('tts-label');
+            const indicator = document.getElementById('tts-indicator');
+            const dict = dictionary[state.lang];
+            if (isReading) { icon.textContent = "■"; label.textContent = dict.tts_stop; indicator.classList.remove('hidden'); indicator.classList.add('flex'); }
+            else { icon.textContent = "▶"; label.textContent = dict.tts_read; indicator.classList.add('hidden'); indicator.classList.remove('flex'); }
+        }
+
+        function renderResearchChart() {
+            const ctx = document.getElementById('researchChart'); if (!ctx) return;
+            if (activeChart) activeChart.destroy();
+            const isZh = state.lang === 'zh';
+            const isDark = state.theme === 'dark';
+            const colors = isDark ? ['#10b981', '#34d399', '#6b7280'] : ['#175e52', '#2d8a76', '#9ca3af'];
+            const textColor = isDark ? '#9ca3af' : '#4b5563';
+            const unit = dictionary[state.lang][researchData[state.activeTab].unitId];
+            let config = { type: 'bar', data: {}, options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } };
+            if (state.activeTab === 'elite') { config.type = 'doughnut'; config.data = { labels: isZh ? ['理論', '政策', '管理'] : ['Theory', 'Policy', 'Mgmt'], datasets: [{ data: [50, 30, 20], backgroundColor: colors, borderColor: isDark ? '#111827' : '#fff', borderWidth: 2 }] }; }
+            else if (state.activeTab === 'vb') { config.data = { labels: isZh ? ['美國', '日本', '台灣'] : ['USA', 'Japan', 'Taiwan'], datasets: [{ label: isZh ? '成熟度' : 'Maturity', data: [5, 8, 2], backgroundColor: colors[0] }, { label: isZh ? '自由度' : 'Freedom', data: [9, 6, 3], backgroundColor: colors[2] }] }; config.options.scales = { x: { ticks: { color: textColor }, grid: { display: false } }, y: { title: { display: true, text: unit, color: textColor }, ticks: { color: textColor }, grid: { color: isDark ? '#374151' : '#e5e7eb' } } }; }
+            else if (state.activeTab === 'silver') { config.type = 'line'; config.data = { labels: ['2025', '2030', '2035'], datasets: [{ label: isZh ? '預估節省' : 'Savings', data: [100, 150, 220], borderColor: colors[0], backgroundColor: isDark ? 'rgba(16,185,129,0.1)' : 'rgba(23,94,82,0.1)', fill: true, tension: 0.3 }] }; config.options.scales = { x: { ticks: { color: textColor }, grid: { display: false } }, y: { title: { display: true, text: unit, color: textColor }, ticks: { color: textColor }, grid: { color: isDark ? '#374151' : '#e5e7eb' } } }; }
+            else { config.type = 'pie'; config.data = { labels: isZh ? ['合約', '反托拉斯', '智財'] : ['Contract', 'Antitrust', 'IP'], datasets: [{ data: [40, 35, 25], backgroundColor: colors, borderColor: isDark ? '#111827' : '#fff', borderWidth: 2 }] }; }
+            activeChart = new Chart(ctx, config);
+        }
+
+        function renderDashboard() {
+            const filtered = filterUniversities();
+            document.getElementById('count-display').textContent = filtered.length;
+            const list = document.getElementById('uni-list');
+            if (filtered.length === 0) { list.innerHTML = `<div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-12 text-center"><div class="text-4xl mb-4">🔍</div><p class="text-gray-500 dark:text-gray-400 font-serif italic">${dictionary[state.lang].no_results}</p></div>`; }
+            else {
+                const lbl = dictionary[state.lang];
+                list.innerHTML = filtered.map(u => `
+                    <div class="bg-white dark:bg-gray-800 border-l-4 ${u.track === 'Elite' ? 'border-l-bcg-green dark:border-l-green-500' : 'border-l-gray-300 dark:border-l-gray-600'} border border-gray-200 dark:border-gray-700 card-hover">
+                        <div class="p-5 flex justify-between items-center cursor-pointer" onclick="toggleCard(${u.id})">
+                            <div>
+                                ${u.track === 'Elite' ? `<span class="text-[10px] font-bold uppercase tracking-widest text-bcg-green dark:text-green-400 mb-1 block">★ ELITE TRACK</span>` : ''}
+                                <h4 class="font-serif font-bold text-lg text-gray-900 dark:text-white">${state.lang === 'zh' ? u.name_zh : u.name_en}</h4>
+                                <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">${u.region} • ${u.sports[0]}</div>
+                            </div>
+                            <span class="text-gray-300 text-2xl">${state.expandedCard === u.id ? '−' : '+'}</span>
+                        </div>
+                        <div class="accordion-content ${state.expandedCard === u.id ? 'open' : ''} border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                            <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-sm">
+                                <div><span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">${lbl.lbl_tuition}</span><span class="dark:text-gray-300">${u.tuition}</span></div>
+                                <div><span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">${lbl.lbl_duration}</span><span class="dark:text-gray-300">${u.duration}</span></div>
+                                <div><span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">${lbl.lbl_courses}</span><span class="dark:text-gray-300">${state.lang === 'zh' ? u.courses_zh : u.courses_en}</span></div>
+                                <div><span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">${lbl.lbl_alumni}</span><span class="dark:text-gray-300">${state.lang === 'zh' ? u.alumni_zh : u.alumni_en}</span></div>
+                                <div class="col-span-1 md:col-span-2 mt-2 pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                                    <span class="font-serif italic text-gray-600 dark:text-gray-400">${state.lang === 'zh' ? u.career_zh : u.career_en}</span>
+                                    <a href="${u.web}" target="_blank" class="text-bcg-green dark:text-green-400 font-bold hover:underline uppercase text-xs tracking-widest">${lbl.lbl_web} →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            renderRadar(filtered);
+        }
+
+        function filterUniversities() { return universities.filter(u => (state.filters.track === 'all' || u.track === state.filters.track) && (state.filters.region === 'all' || u.region === state.filters.region) && (state.filters.sport === 'all' || u.sports.includes(state.filters.sport))); }
+
+        window.toggleCard = (id) => { state.expandedCard = state.expandedCard === id ? null : id; renderDashboard(); };
+
+        function renderRadar(data) {
+            const ctx = document.getElementById('radarChart'); if (!ctx) return;
+            if (radarChart) radarChart.destroy();
+            let avg = { theory: 0, practice: 0, legal: 0, health: 0 };
+            if (data.length) { data.forEach(u => { avg.theory += u.scores.theory; avg.practice += u.scores.practice; avg.legal += u.scores.legal; avg.health += u.scores.health; }); Object.keys(avg).forEach(k => avg[k] /= data.length); }
+            const isDark = state.theme === 'dark';
+            const color = isDark ? '#10b981' : '#175e52';
+            radarChart = new Chart(ctx, { type: 'radar', data: { labels: state.lang === 'zh' ? ['理論', '實務', '法律', '健康'] : ['Theory', 'Practice', 'Legal', 'Health'], datasets: [{ label: 'Cohort', data: [avg.theory, avg.practice, avg.legal, avg.health], backgroundColor: isDark ? 'rgba(16, 185, 129, 0.2)' : 'rgba(23, 94, 82, 0.1)', borderColor: color, pointBackgroundColor: color, borderWidth: 2 }] }, options: { maintainAspectRatio: false, scales: { r: { suggestedMin: 0, max: 10, ticks: { display: false }, grid: { color: isDark ? '#374151' : '#e5e7eb' }, pointLabels: { color: isDark ? '#9ca3af' : '#4b5563' } } }, plugins: { legend: { display: false } } } });
+        }
+    </script>
+</body>
+</html>

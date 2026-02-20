@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Graduate Pathways | Sports Affairs × Economics</title>
+    <title>Strategic Graduate Pathways | Sports Affairs × Economics (AI Upgrade)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -67,7 +67,6 @@
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15); }
         
-        /* Scroll offset for sticky header */
         [id] { scroll-margin-top: 80px; }
         
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -112,7 +111,7 @@
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-bcg-green"></span>
                     </span>
                     <p class="text-sm font-semibold text-bcg-green dark:text-green-400 uppercase tracking-widest" data-i18n="target_audience">
-                        Target: Junior Dual Major (Sports Affairs + Economics)
+                        Target: NTU Junior Dual Major (Sports Affairs + Economics)
                     </p>
                 </div>
             </div>
@@ -126,13 +125,13 @@
                         </span>
                     </h2>
                     <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mb-8" data-i18n="hero_desc">
-                        A comprehensive strategic framework designed for dual-major students navigating the intersection of sports administration and economic analysis.
+                        A comprehensive strategic framework integrating traditional sports economics with the AI revolution and healthcare economics, designed specifically for dual-major students.
                     </p>
                     
-                    <!-- Quick Stats - Fixed: 3 regions -->
+                    <!-- Quick Stats - Updated to 20 -->
                     <div class="flex flex-wrap gap-6 mb-8">
                         <div class="flex items-center gap-2">
-                            <span class="text-3xl font-serif font-bold text-bcg-green dark:text-green-400">15</span>
+                            <span class="text-3xl font-serif font-bold text-bcg-green dark:text-green-400">20</span>
                             <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="stat_programs">Programs<br/>Analyzed</span>
                         </div>
                         <div class="w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -174,9 +173,9 @@
                 </div>
             </div>
             
-            <!-- Expertise Tags -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-gray-300 dark:border-gray-700 pt-8 mt-8">
-                <div class="pr-6 border-r border-gray-200 dark:border-gray-700 pb-6 md:pb-0">
+            <!-- Expertise Tags (Expanded to 4 columns) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-gray-300 dark:border-gray-700 pt-8 mt-8">
+                <div class="pr-6 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700 pb-6 lg:pb-0">
                     <div class="flex items-start gap-3">
                         <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                             <span class="text-bcg-green dark:text-green-400 text-lg">🎓</span>
@@ -187,32 +186,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-6 border-r border-gray-200 dark:border-gray-700 py-6 md:py-0">
+                <div class="px-0 md:px-6 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700 py-6 md:py-0 lg:py-0">
                     <div class="flex items-start gap-3">
                         <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
-                            <span class="text-bcg-green dark:text-green-400 text-lg">🏐</span>
+                            <span class="text-bcg-green dark:text-green-400 text-lg">🤖</span>
                         </div>
                         <div>
-                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_vb_head">Market Focus</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_vb_desc">Volleyball Economics</p>
+                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_ai_head">Tech & AI</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_ai_desc">Agentic AI, Data Analytics</p>
                         </div>
                     </div>
                 </div>
-                <div class="pl-6 pt-6 md:pt-0">
+                <div class="px-0 lg:px-6 border-b md:border-b-0 md:border-r lg:border-r border-gray-200 dark:border-gray-700 py-6 lg:py-0">
                     <div class="flex items-start gap-3">
                         <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
-                            <span class="text-bcg-green dark:text-green-400 text-lg">👴</span>
+                            <span class="text-bcg-green dark:text-green-400 text-lg">🏥</span>
                         </div>
                         <div>
                             <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_silver_head">Future Trend</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_silver_desc">Silver Economy Strategy</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_silver_desc">Healthcare & Silver Economy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pl-0 lg:pl-6 pt-6 lg:pt-0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-bcg-green/10 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                            <span class="text-bcg-green dark:text-green-400 text-lg">⚖️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase mb-1 text-gray-900 dark:text-gray-200" data-i18n="tag_policy_head">Policy & Law</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400" data-i18n="tag_policy_desc">Tech Regulation & Compliance</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Timeline Section -->
+        <!-- Timeline Section (Updated with AI strategy) -->
         <section class="mb-16 opacity-0 animate-fade-in animate-delay-100" style="animation-fill-mode: forwards;" id="timeline-section">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between pb-4 border-b border-gray-300 dark:border-gray-600 mb-8">
                 <div>
@@ -222,26 +232,13 @@
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0" data-i18n="timeline_hint">Hover cards to view action items</p>
             </div>
             
-            <!-- Progress Indicator -->
             <div class="flex items-center justify-between mb-8 px-4">
-                <div class="flex-1 flex items-center">
-                    <div class="w-8 h-8 bg-bcg-green text-white flex items-center justify-center text-xs font-bold">1</div>
-                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
-                </div>
-                <div class="flex-1 flex items-center">
-                    <div class="w-8 h-8 bg-bcg-green/60 text-white flex items-center justify-center text-xs font-bold">2</div>
-                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
-                </div>
-                <div class="flex-1 flex items-center">
-                    <div class="w-8 h-8 bg-bcg-green/40 text-white flex items-center justify-center text-xs font-bold">3</div>
-                    <div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-8 h-8 bg-bcg-green/20 dark:bg-green-900/50 text-bcg-green dark:text-green-400 flex items-center justify-center text-xs font-bold border-2 border-bcg-green/40">4</div>
-                </div>
+                <div class="flex-1 flex items-center"><div class="w-8 h-8 bg-bcg-green text-white flex items-center justify-center text-xs font-bold">1</div><div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div></div>
+                <div class="flex-1 flex items-center"><div class="w-8 h-8 bg-bcg-green/60 text-white flex items-center justify-center text-xs font-bold">2</div><div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div></div>
+                <div class="flex-1 flex items-center"><div class="w-8 h-8 bg-bcg-green/40 text-white flex items-center justify-center text-xs font-bold">3</div><div class="flex-1 h-0.5 bg-bcg-green/30 dark:bg-green-900/50"></div></div>
+                <div class="flex items-center"><div class="w-8 h-8 bg-bcg-green/20 dark:bg-green-900/50 text-bcg-green dark:text-green-400 flex items-center justify-center text-xs font-bold border-2 border-bcg-green/40">4</div></div>
             </div>
             
-            <!-- Timeline Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="timeline-container"></div>
         </section>
 
@@ -254,15 +251,11 @@
                         <h3 class="text-2xl font-bold font-serif text-gray-900 dark:text-white" data-i18n="section_research">Strategic Insights</h3>
                     </div>
                     
-                    <!-- TTS Button -->
                     <button id="tts-btn" class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 hover:border-bcg-green dark:hover:border-green-500 bg-white dark:bg-gray-800 text-xs font-bold uppercase tracking-widest transition-all mb-1 group">
                         <span id="tts-icon" class="text-bcg-green dark:text-green-400 transition-transform group-hover:scale-110">▶</span>
                         <span id="tts-label" class="dark:text-gray-200">READ INSIGHT</span>
                         <div id="tts-indicator" class="hidden items-center gap-0.5 h-4 text-green-500">
-                            <div class="sound-wave-bar"></div>
-                            <div class="sound-wave-bar"></div>
-                            <div class="sound-wave-bar"></div>
-                            <div class="sound-wave-bar"></div>
+                            <div class="sound-wave-bar"></div><div class="sound-wave-bar"></div><div class="sound-wave-bar"></div><div class="sound-wave-bar"></div>
                         </div>
                     </button>
                 </div>
@@ -273,14 +266,14 @@
             <div id="research-content" class="bg-white dark:bg-gray-800 p-8 border border-t-0 border-gray-200 dark:border-gray-700 shadow-sm"></div>
         </section>
 
-        <!-- Glossary Section - Complete 10 items -->
+        <!-- Glossary Section (Expanded to 14 terms) -->
         <section class="mb-16 opacity-0 animate-fade-in animate-delay-300" style="animation-fill-mode: forwards;" id="glossary-section">
             <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
                 <div class="bg-gray-50 dark:bg-gray-900 px-8 py-4 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-3">
                         <span class="text-xl">📚</span>
                         <h4 class="text-sm font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400" data-i18n="glossary_section">Core Terminology</h4>
-                        <span class="text-xs text-gray-400 ml-2">(10 terms)</span>
+                        <span class="text-xs text-gray-400 ml-2">(14 terms)</span>
                     </div>
                 </div>
                 <div class="p-8">
@@ -298,7 +291,7 @@
             </div>
         </section>
 
-        <!-- Program Dashboard -->
+        <!-- Program Dashboard (Now with 20 programs) -->
         <section id="dashboard" class="opacity-0 animate-fade-in" style="animation-fill-mode: forwards; animation-delay: 0.4s;">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between pb-4 border-b border-gray-300 dark:border-gray-600 mb-8">
                 <div>
@@ -336,22 +329,19 @@
                 
                 <!-- Main Content -->
                 <div class="lg:col-span-3 space-y-6">
-                    <!-- Radar Chart -->
                     <div class="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
                         <h4 class="text-xs font-bold text-center mb-4 uppercase tracking-widest text-gray-400" data-i18n="chart_radar">Competency Matrix</h4>
                         <div class="chart-container"><canvas id="radarChart"></canvas></div>
                     </div>
                     
-                    <!-- Results Count Bar -->
                     <div class="bg-bcg-green dark:bg-green-700 text-white px-5 py-4 text-xs font-bold uppercase tracking-widest flex justify-between items-center shadow-sm">
                         <span data-i18n="list_count_label">Programs Identified</span>
                         <div class="flex items-center gap-3">
                             <span id="count-display" class="text-2xl font-serif">0</span>
-                            <span class="text-green-200 text-[10px]" data-i18n="of_total">/ 13 total</span>
+                            <span class="text-green-200 text-[10px]" data-i18n="of_total">/ 20 total</span>
                         </div>
                     </div>
                     
-                    <!-- Program List -->
                     <div id="uni-list" class="space-y-4"></div>
                 </div>
             </div>
@@ -381,30 +371,31 @@
     </footer>
 
     <script>
-        const state = { lang: 'en', theme: 'light', activeTab: 'elite', filters: { track: 'all', region: 'all', sport: 'all' }, expandedCard: null, selectedTerm: 'antitrust', ttsSupported: false, voices: [] };
+        const state = { lang: 'zh', theme: 'light', activeTab: 'ai_tech', filters: { track: 'all', region: 'all', sport: 'all' }, expandedCard: null, selectedTerm: 'gen_ai', ttsSupported: false, voices: [] };
 
         const dictionary = {
             en: {
-                target_audience: "Target: Junior Dual Major (Sports Affairs + Economics)",
+                target_audience: "Target: NTU Junior Dual Major (Sports Affairs + Economics)",
                 hero_title_1: "From Theory to Industry Leader",
                 hero_title_2: "Strategic Graduate Pathways in Sports Economics & Law",
-                hero_desc: "A comprehensive strategic framework designed for dual-major students navigating the intersection of sports administration and economic analysis.",
+                hero_desc: "A comprehensive strategic framework integrating traditional sports economics with the AI revolution and healthcare economics, designed specifically for dual-major students.",
                 stat_programs: "Programs\nAnalyzed", stat_regions: "Geographic\nRegions", stat_months: "Month\nRoadmap",
                 quick_nav: "Quick Navigation", nav_timeline: "Application Roadmap", nav_insights: "Strategic Insights", nav_glossary: "Core Terminology", nav_programs: "Program Directory",
                 tag_elite_head: "Elite Academia", tag_elite_desc: "Chicago, Harvard, Stanford",
-                tag_vb_head: "Market Focus", tag_vb_desc: "Volleyball Economics",
-                tag_silver_head: "Future Trend", tag_silver_desc: "Silver Economy Strategy",
+                tag_ai_head: "Tech & AI", tag_ai_desc: "Agentic AI, Data Analytics",
+                tag_silver_head: "Future Trend", tag_silver_desc: "Healthcare & Silver Economy",
+                tag_policy_head: "Policy & Law", tag_policy_desc: "Tech Regulation & Compliance",
                 section_timeline: "Application Roadmap: Junior Year to Graduation", timeline_hint: "Hover cards to view action items",
                 section_research: "Strategic Insights",
                 glossary_section: "Core Terminology", glossary_label: "Select Term", glossary_def_label: "Definition", glossary_default: "Select a term to view its definition.",
                 filter_header: "Refine View", filter_track: "Academic Track", filter_region: "Geographic Region", filter_sport: "Sector Specialization",
-                chart_radar: "Aggregate Competency Profile", chart_vb: "Market Analysis: League Models", chart_elite: "Curriculum Focus", chart_silver: "Healthcare Savings Projection", chart_law: "Legal Practice Areas",
-                list_header: "Program Directory & Analysis", list_count_label: "Programs Identified", of_total: "/ 15 total",
-                tab_elite: "Elite Academic", tab_vb: "Volleyball Sector", tab_silver: "Silver Economy", tab_law: "Sports Law",
+                chart_radar: "Aggregate Competency Profile", chart_vb: "Market Analysis: League Models", chart_elite: "Curriculum Focus", chart_silver: "Healthcare Savings Projection", chart_law: "Legal Practice Areas", chart_ai_tech: "AI Capability Distribution",
+                list_header: "Program Directory & Analysis", list_count_label: "Programs Identified", of_total: "/ 20 total",
+                tab_elite: "Elite Academic", tab_ai_tech: "AI & Digital Transformation", tab_vb: "Volleyball Sector", tab_silver: "Silver Economy & Health", tab_law: "Sports Law",
                 btn_reset: "Reset", lbl_tuition: "Investment", lbl_duration: "Duration", lbl_courses: "Curriculum", lbl_alumni: "Network", lbl_career: "Career Path", lbl_web: "Portal",
                 tts_read: "READ INSIGHT", tts_stop: "STOP", tts_unavailable: "TTS Unavailable",
-                sport_all: "All Sectors", sport_vb: "Volleyball", sport_bb: "Baseball", sport_bkb: "Basketball", sport_bad: "Badminton", sport_tt: "Table Tennis", sport_mara: "Marathon", sport_cyc: "Cycling", sport_yoga: "Yoga/Fitness",
-                track_all: "All Tracks", track_elite: "Elite Academic (PhD)", track_applied: "Applied Industry (Master)",
+                sport_all: "All Sectors", sport_vb: "Volleyball", sport_bb: "Baseball", sport_bkb: "Basketball", sport_bad: "Badminton", sport_tt: "Table Tennis", sport_mara: "Marathon", sport_cyc: "Cycling", sport_yoga: "Yoga/Fitness", sport_ai_data: "AI/Data Analytics", sport_tech_policy: "Tech & Policy", sport_healthcare: "Healthcare & Aging",
+                track_all: "All Tracks", track_elite: "Elite Academic (PhD)", track_applied: "Applied Industry (Master)", track_tech_policy: "Tech & Policy",
                 region_all: "Global", region_usa: "USA", region_oce: "Oceania", region_asia: "Asia",
                 unit_score: "Score (0-10)", unit_pct: "Percentage (%)", unit_index: "Index (2025=100)", unit_cases: "Distribution (%)",
                 card_front_hint: "HOVER TO VIEW ACTIONS",
@@ -413,44 +404,50 @@
                 no_results: "No programs match your criteria. Try adjusting filters."
             },
             zh: {
-                target_audience: "專屬策略：國際體育事務與經濟系雙主修大三學生",
+                target_audience: "專屬策略：台大體育事務與經濟雙主修大三學生",
                 hero_title_1: "從理論巔峰到產業前沿",
                 hero_title_2: "全球體育經濟與法律深造策略",
-                hero_desc: "為雙主修學生量身打造的全方位策略架構，協助你在體育行政與經濟分析的交匯處找到最佳發展路徑。",
+                hero_desc: "為雙主修學生量身打造的全方位策略架構，結合傳統體育經濟、AI 技術革命與高齡健康經濟，協助你在變局中掌握最佳發展路徑。",
                 stat_programs: "分析\n學程", stat_regions: "地理\n區域", stat_months: "月份\n規劃",
                 quick_nav: "快速導覽", nav_timeline: "申請路徑圖", nav_insights: "策略洞察", nav_glossary: "核心術語", nav_programs: "學程目錄",
                 tag_elite_head: "頂尖學術", tag_elite_desc: "常春藤盟校、芝加哥大學",
-                tag_vb_head: "市場聚焦", tag_vb_desc: "排球經濟學",
-                tag_silver_head: "未來趨勢", tag_silver_desc: "銀髮經濟策略",
+                tag_ai_head: "科技與 AI", tag_ai_desc: "代理式 AI、數據分析",
+                tag_silver_head: "未來趨勢", tag_silver_desc: "醫療保健與銀髮經濟",
+                tag_policy_head: "政策與法律", tag_policy_desc: "科技監管與合規",
                 section_timeline: "申請準備路徑圖：大三下至畢業", timeline_hint: "滑鼠懸停查看行動方案",
                 section_research: "策略洞察",
                 glossary_section: "核心術語庫", glossary_label: "選擇術語", glossary_def_label: "定義與背景", glossary_default: "請選擇術語查看定義。",
                 filter_header: "篩選條件", filter_track: "學術路徑", filter_region: "地理區域", filter_sport: "產業專項",
-                chart_radar: "核心能力矩陣", chart_vb: "市場分析：聯賽模型", chart_elite: "課程比重分析", chart_silver: "醫療節省預估", chart_law: "法律實務領域",
-                list_header: "學程名錄與分析", list_count_label: "符合條件", of_total: "/ 共 15 學程",
-                tab_elite: "菁英學術路徑", tab_vb: "排球產業專題", tab_silver: "銀髮經濟趨勢", tab_law: "運動法律與合規",
+                chart_radar: "核心能力矩陣", chart_vb: "市場分析：聯賽模型", chart_elite: "課程比重分析", chart_silver: "醫療節省預估", chart_law: "法律實務領域", chart_ai_tech: "AI 應用能力分佈",
+                list_header: "學程名錄與分析", list_count_label: "符合條件", of_total: "/ 共 20 學程",
+                tab_elite: "菁英學術路徑", tab_ai_tech: "AI 與數位轉型", tab_vb: "排球產業專題", tab_silver: "銀髮經濟與健康", tab_law: "運動法律與合規",
                 btn_reset: "重置", lbl_tuition: "預估投資", lbl_duration: "修業年限", lbl_courses: "核心課程", lbl_alumni: "校友網絡", lbl_career: "職涯路徑", lbl_web: "官方網站",
                 tts_read: "朗讀洞察", tts_stop: "停止", tts_unavailable: "語音不支援",
-                sport_all: "所有產業", sport_vb: "排球", sport_bb: "棒球", sport_bkb: "籃球", sport_bad: "羽球", sport_tt: "桌球", sport_mara: "馬拉松", sport_cyc: "自行車", sport_yoga: "瑜珈/健身",
-                track_all: "所有路徑", track_elite: "菁英學術 (PhD導向)", track_applied: "產業實務 (Master導向)",
+                sport_all: "所有產業", sport_vb: "排球", sport_bb: "棒球", sport_bkb: "籃球", sport_bad: "羽球", sport_tt: "桌球", sport_mara: "馬拉松", sport_cyc: "自行車", sport_yoga: "瑜珈/健身", sport_ai_data: "AI 與數據分析", sport_tech_policy: "科技與政策", sport_healthcare: "健康與高齡化",
+                track_all: "所有路徑", track_elite: "菁英學術 (PhD導向)", track_applied: "產業實務 (Master導向)", track_tech_policy: "科技與政策規劃",
                 region_all: "全球", region_usa: "美國", region_oce: "紐澳", region_asia: "亞洲",
                 unit_score: "評分 (0-10)", unit_pct: "佔比 (%)", unit_index: "指數 (2025=100)", unit_cases: "案件分佈 (%)",
                 card_front_hint: "懸停查看行動方針",
-                footer_desc: "為國際體育事務與經濟系雙主修學生設計的研究型指南",
+                footer_desc: "為台大體育事務與經濟系雙主修學生設計的研究型指南",
                 footer_editor: "學術編輯",
                 no_results: "沒有符合條件的學程，請調整篩選條件。"
             }
         };
 
         const timelineData = [
-            { period_en: "Junior Spring", period_zh: "大三下學期", date_en: "Feb - Jun", date_zh: "2月-6月", title_en: "Academic & Research Foundation", title_zh: "學術與研究奠基", desc_en: "• Maintain high GPA in Microeconomics & Statistics\n• Join faculty research projects on Sports Data\n• Begin literature review on target topics", desc_zh: "• 維持個體經濟與統計學的高 GPA\n• 加入教授的運動數據研究計畫\n• 開始針對目標領域進行文獻回顧", icon: "📚" },
-            { period_en: "Junior Summer", period_zh: "大三升大四暑假", date_en: "Jul - Aug", date_zh: "7月-8月", title_en: "Testing & Industry Exposure", title_zh: "考試與實習衝刺", desc_en: "• Intensive GRE/GMAT preparation\n• Internship at sports leagues (CPBL/PLG)\n• Network with industry professionals", desc_zh: "• GRE/GMAT 密集準備\n• 職業聯盟實習 (CPBL/PLG/法律事務所)\n• 建立產業人脈網絡", icon: "🎯" },
-            { period_en: "Senior Fall", period_zh: "大四上學期", date_en: "Sep - Dec", date_zh: "9月-12月", title_en: "Application Strategy", title_zh: "申請送件策略", desc_en: "• Draft SOP highlighting dual-major value\n• Submit Round 1 applications (US)\n• Request recommendation letters", desc_zh: "• 撰寫 SOP 強調雙主修獨特價值\n• 遞交美國學校第一輪申請\n• 聯繫推薦信", icon: "✍️" },
-            { period_en: "Senior Spring", period_zh: "大四下學期", date_en: "Jan - Jun", date_zh: "1月-6月", title_en: "Decision & Funding", title_zh: "決策與獎學金", desc_en: "• Prepare for interviews\n• Apply for MOE scholarships\n• Finalize school choice & visa", desc_zh: "• 面試準備\n• 申請教育部留學獎學金\n• 確認學校並辦理簽證", icon: "🎓" }
+            { period_en: "Junior Spring", period_zh: "大三下學期", date_en: "Feb - Jun", date_zh: "2月-6月", title_en: "Technical & Academic Foundation", title_zh: "技術與學術奠基", desc_en: "• Maintain high GPA in Microeconomics & Stats\n• Cross-enroll to strengthen Python, R, SQL skills\n• Begin literature review on Tech/Health economics", desc_zh: "• 維持個體經濟與統計學的高 GPA\n• 跨系選修補強 Python, R, SQL 等程式實作能力\n• 針對科技與高齡健康經濟進行文獻回顧", icon: "💻" },
+            { period_en: "Junior Summer", period_zh: "大三升大四暑假", date_en: "Jul - Aug", date_zh: "7月-8月", title_en: "Certifications & Industry Exposure", title_zh: "證照與實習衝刺", desc_en: "• Obtain Agentic AI certs (e.g., JHU, IBM)\n• Internship in sports data or health tech firms\n• Intensive GRE/GMAT preparation", desc_zh: "• 考取 Agentic AI 等前沿 AI 專業認證 (JHU/IBM)\n• 爭取醫療科技或體育數據分析相關實習\n• GRE/GMAT 量化成績密集準備", icon: "🏆" },
+            { period_en: "Senior Fall", period_zh: "大四上學期", date_en: "Sep - Dec", date_zh: "9月-12月", title_en: "Application Strategy", title_zh: "申請送件策略", desc_en: "• Draft SOP linking AI/Aging to sports econ\n• Submit Round 1 applications (UW/UCSD focus)\n• Secure strong tech & academic recommendation letters", desc_zh: "• 撰寫 SOP，巧妙串聯 AI、高齡化與體育經濟背景\n• 遞交美國頂尖名校 (如UW, UCSD) 第一輪申請\n• 聯繫指導教授與實習主管撰寫推薦信", icon: "✍️" },
+            { period_en: "Senior Spring", period_zh: "大四下學期", date_en: "Jan - Jun", date_zh: "1月-6月", title_en: "Decision & Funding", title_zh: "決策與獎學金", desc_en: "• Prepare for rigorous program interviews\n• Apply for MOE scholarships & financial aid\n• Finalize STEM program choice & visa process", desc_zh: "• 面試準備，展現對數位轉型與政策的見解\n• 申請教育部留學獎學金\n• 確認具備 STEM 認證之學校並辦理簽證", icon: "🎓" }
         ];
 
-        // COMPLETE Glossary - All 10 items from original
+        // Expanded Glossary to 14 items
         const glossaryData = [
+            { id: 'gen_ai', term_en: 'Generative AI', term_zh: '生成式人工智慧', def_en: "AI systems capable of autonomous learning and content generation, reshaping marketing and analytics.", def_zh: "具備自我學習與內容生成能力的系統，正在徹底改變體育內容策略與經濟數據分析的樣貌。" },
+            { id: 'agentic_ai', term_en: 'Agentic AI', term_zh: '代理式人工智慧', def_en: "Autonomous systems combining generative and analytical AI to optimize workflows and strategic decisions.", def_zh: "結合生成與分析能力的自主決策系統，能動態優化供應鏈、場館營運與即時定價策略。" },
+            { id: 'physical_ai', term_en: 'Physical AI', term_zh: '實體人工智慧', def_en: "The integration of AI software with robotic hardware, crucial for healthcare and athlete training.", def_zh: "AI大腦與實體機器人硬體的結合，廣泛應用於高齡照護與運動員訓練防護。" },
+            { id: 'bige_model', term_en: 'BIGE Model', term_zh: 'BIGE 模型', def_en: "Biomechanics-informed GenAI developed by UCSD for injury prevention and optimized rehabilitation.", def_zh: "UCSD開發的模型，結合人體生物力學與生成式AI，用於預防運動傷害與最佳化復健訓練。" },
+            { id: 'health_econ', term_en: 'Healthcare Economics', term_zh: '健康經濟學', def_en: "Economic analysis of 'Exercise Prescriptions' versus long-term healthcare expenditures in an aging society.", def_zh: "針對高齡社會中「運動處方」與長期健保支出之間進行成本效益分析的新興領域。" },
             { id: 'antitrust', term_en: 'Antitrust Law', term_zh: '反托拉斯法', def_en: "Legal framework promoting market competition. Key in challenging league monopolies.", def_zh: "促進市場競爭的法律架構。常用於挑戰職業聯盟的壟斷地位。" },
             { id: 'moneyball', term_en: 'Sabermetrics', term_zh: '賽伯計量學', def_en: "Statistical analysis to identify undervalued assets in player markets.", def_zh: "利用統計分析在球員市場中尋找被低估的資產。" },
             { id: 'cba', term_en: 'CBA', term_zh: '勞資協議', def_en: "Collective Bargaining Agreement determining salary caps and revenue sharing.", def_zh: "決定薪資上限與收益分享機制的勞資雙方協議。" },
@@ -459,19 +456,20 @@
             { id: 'arbitration', term_en: 'Salary Arbitration', term_zh: '薪資仲裁', def_en: "Legal process to resolve salary disputes via final-offer arbitration.", def_zh: "解決球員與球隊薪資爭議的法律程序。" },
             { id: 'nil', term_en: 'NIL', term_zh: '姓名形象權', def_en: "Name, Image, and Likeness rights allowing college athletes to monetize their brand.", def_zh: "允許大學運動員將個人品牌變現的權利。" },
             { id: 'titleix', term_en: 'Title IX', term_zh: '教育修正案第九條', def_en: "Law prohibiting sex discrimination, driving the growth of women's sports.", def_zh: "禁止教育性別歧視的聯邦法律。" },
-            { id: 'revenue', term_en: 'Revenue Sharing', term_zh: '收益分享', def_en: "Distribution of league revenues among teams to ensure competitive balance.", def_zh: "聯盟將收入分配給各隊以維持競爭平衡。" },
             { id: 'franchise', term_en: 'Franchise Model', term_zh: '特許經營', def_en: "Closed league system with no relegation, maximizing asset value.", def_zh: "無升降級的封閉式聯盟體制。" }
         ];
 
         const researchData = {
+            ai_tech: { title_en: "AI & Digital Transformation in Sports Econ", title_zh: "技術典範轉移：AI重塑體育與經濟產業", content_en: "Future economists must master advanced technologies. Generative AI (GenAI) optimizes fan engagement, while Agentic AI enables autonomous decision-making in pricing and operations. Physical AI merges biomechanics with robotics for injury prevention (e.g., UCSD's BIGE model). Graduates skilled in Python, R, and AI policy will lead this paradigm shift.", content_zh: "未來的經濟學家必須駕馭先進技術。生成式AI (GenAI) 正重塑球迷互動；代理式AI (Agentic AI) 則賦予機器自主優化定價與營運的能力。更進階的實體AI (Physical AI) 則將生物力學與機器人結合，如UCSD的BIGE模型，用於防護與復健。精通數據與AI政策的人才將引領產業轉型。", chartId: "chart_ai_tech", unitId: "unit_pct" },
             elite: { title_en: "The Elite Academic Track: Economics & Law", title_zh: "菁英學術路徑：經濟與法律", content_en: "Focus on Rule-Making. Utilize the powerful toolkit of Mechanism Design (UChicago) to optimize ticket auction systems, or apply Game Theory to model salary arbitration outcomes. Harvard Law's negotiation frameworks provide the strategic edge for player contract structuring. This rigorous theoretical foundation is the gateway to high-level governance roles at the IOC, FIFA, or as a lead consultant for major leagues.", content_zh: "專注於規則制定。利用芝加哥大學的機制設計 (Mechanism Design) 理論來優化票務拍賣系統，或應用賽局理論 (Game Theory) 模擬薪資仲裁結果。哈佛法學院的談判架構則為球員合約結構提供了策略優勢。這種嚴謹的理論基礎是通往 IOC、FIFA 決策層或成為職業聯盟首席顧問的必經之路。", chartId: "chart_elite", unitId: "unit_pct" },
             vb: { title_en: "Volleyball Economics: Global vs Local Models", title_zh: "排球經濟專題：全球與在地模式", content_en: "A comparative economic analysis of three distinct models: 1. The US Franchise Model (PVF/LOVB) focusing on city-based asset appreciation. 2. Japan's SV.League transformation, aiming for full professionalization with corporate backing. 3. Taiwan's TVL transitional challenges. Key research metrics include Fan Engagement ROI and the marginal utility of transitioning from semi-pro to fully pro status.", content_zh: "針對三種不同模式的比較經濟分析：1. 美國特許經營模式 (PVF/LOVB)，專注於城市資產增值。2. 日本 SV.League 的轉型，旨在透過企業支持實現完全職業化。3. 台灣 TVL 的過渡期挑戰。關鍵研究指標包括粉絲互動投資報酬率 (ROI) 以及從半職業轉型為全職業的邊際效用。", chartId: "chart_vb", unitId: "unit_score" },
-            silver: { title_en: "Silver Economy & Health Policy Strategy", title_zh: "銀髮經濟與健康政策策略", content_en: "As Taiwan approaches a Super-Aged Society (2025), sports transition from entertainment to preventive medicine. The core economic thesis involves a Cost-Benefit Analysis of 'Exercise Prescriptions' (e.g., Yoga, Cycling) versus long-term National Health Insurance expenditures. Japan (Tsukuba, Waseda) offers the most relevant policy templates for community-integrated elderly wellness programs.", content_zh: "隨著台灣邁入超高齡社會 (2025)，體育的角色從娛樂轉變為預防醫學。核心經濟論述涉及「運動處方」（如瑜珈、單車）與長期健保支出之間的成本效益分析。日本（筑波、早稻田）為社區整合式高齡健康計畫提供了最具參考價值的政策範本。", chartId: "chart_silver", unitId: "unit_index" },
+            silver: { title_en: "Silver Economy & Health Policy Strategy", title_zh: "銀髮經濟與健康政策策略", content_en: "As global societies age rapidly, sports transition from entertainment to preventive medicine. The core economic thesis involves a Cost-Benefit Analysis of 'Exercise Prescriptions' versus National Health Insurance expenditures. Programs like UCSD's MPH focus on Precision Health and the BIGE model to address these irreversible demographic shifts.", content_zh: "隨著全球步入高齡化社會，體育的角色從娛樂轉變為預防醫學。核心經濟論述涉及「運動處方」與長期健保支出之間的成本效益分析。如 UCSD 的 MPH 計畫專注於精準健康與 BIGE 模型技術，正是為了應對這股不可逆的人口結構重塑。", chartId: "chart_silver", unitId: "unit_index" },
             law: { title_en: "Sports Law & Compliance: Emerging Risks", title_zh: "運動法律與合規：新興風險", content_en: "The legal landscape is shifting rapidly. Critical areas for economic analysis include: 1. Classifying athlete employment status (Employee vs Independent Contractor) and its tax implications. 2. Designing robust liability waivers for elderly participants in high-risk activities. 3. Managing Intellectual Property (Image Rights/NIL) in the digital streaming era. Harvard and Stanford lead in defining these frameworks.", content_zh: "法律環境正在快速變遷。經濟分析的關鍵領域包括：1. 運動員僱傭身分的認定（僱傭 vs 獨立承攬）及其稅務影響。2. 為高風險活動中的高齡參與者設計穩健的免責條款。3. 數位串流時代的智慧財產權（形象權/NIL）管理。哈佛與史丹佛在定義這些架構上居於領先地位。", chartId: "chart_law", unitId: "unit_cases" }
         };
 
-        // COMPLETE Universities - All 13 from original (with correct IDs)
+        // Expanded Universities to 20 (Added 5 from UW & UCSD)
         const universities = [
+            // Original 15
             { id: 1, name_en: "University of Chicago", name_zh: "芝加哥大學", region: "USA", track: "Elite", sports: ["Baseball", "Marathon"], tuition: "$65k/yr", duration: "1-2 Yr", courses_en: "Price Theory, Antitrust", courses_zh: "價格理論, 反托拉斯", alumni_en: "Gary Becker (Nobel)", alumni_zh: "Gary Becker (諾貝爾獎)", career_en: "Econ Consulting", career_zh: "經濟諮詢", web: "https://economics.uchicago.edu/", scores: {theory:10, practice:4, legal:10, health:5} },
             { id: 2, name_en: "Harvard University", name_zh: "哈佛大學", region: "USA", track: "Elite", sports: ["Basketball", "Baseball"], tuition: "$70k/yr", duration: "1-2 Yr", courses_en: "Sports Law Clinic, Negotiation", courses_zh: "運動法律診所, 談判", alumni_en: "League Commissioners", alumni_zh: "聯盟總裁", career_en: "League Counsel", career_zh: "聯盟法務", web: "https://hls.harvard.edu/", scores: {theory:9, practice:7, legal:10, health:6} },
             { id: 3, name_en: "Stanford University", name_zh: "史丹佛大學", region: "USA", track: "Elite", sports: ["Cycling", "Yoga"], tuition: "$68k/yr", duration: "2 Yr", courses_en: "Sports Econ, Innovation", courses_zh: "體育經濟, 創新", alumni_en: "Roger Noll", alumni_zh: "Roger Noll", career_en: "Sports Tech VC", career_zh: "運動科技創投", web: "https://siepr.stanford.edu/", scores: {theory:10, practice:6, legal:9, health:8} },
@@ -486,7 +484,14 @@
             { id: 12, name_en: "Seoul National Univ.", name_zh: "首爾大學", region: "Asia", track: "Applied", sports: ["Badminton"], tuition: "Scholarship", duration: "1.5 Yr", courses_en: "Sport Dev, Governance", courses_zh: "運動發展, 治理", alumni_en: "Global Admins", alumni_zh: "全球行政人員", career_en: "Int'l Fed Staff", career_zh: "國際總會職員", web: "http://dtm.snu.ac.kr/", scores: {theory:9, practice:7, legal:7, health:6} },
             { id: 13, name_en: "University of Sydney", name_zh: "雪梨大學", region: "Oceania", track: "Applied", sports: ["Marathon", "Rugby"], tuition: "$50k/yr", duration: "1.5 Yr", courses_en: "Strategic Mgmt, Big Data", courses_zh: "策略管理, 大數據", alumni_en: "AOC Staff", alumni_zh: "澳洲奧委會職員", career_en: "Consultant", career_zh: "顧問", web: "https://www.sydney.edu.au/", scores: {theory:9, practice:8, legal:6, health:8} },
             { id: 14, name_en: "Univ. of Queensland", name_zh: "昆士蘭大學", region: "Oceania", track: "Applied", sports: ["Cycling", "Yoga"], tuition: "$45k/yr", duration: "1.5 Yr", courses_en: "Health Econ, Policy", courses_zh: "健康經濟, 政策", alumni_en: "2032 Comm Staff", alumni_zh: "2032 籌委會", career_en: "Impact Analyst", career_zh: "影響分析師", web: "https://hmns.uq.edu.au/", scores: {theory:9, practice:7, legal:6, health:10} },
-            { id: 15, name_en: "Deakin University", name_zh: "迪肯大學", region: "Oceania", track: "Applied", sports: ["Basketball"], tuition: "$42k/yr", duration: "2 Yr", courses_en: "Sport Marketing, Law", courses_zh: "運動行銷, 法律", alumni_en: "Tennis Aus Execs", alumni_zh: "澳網高層", career_en: "Event Director", career_zh: "賽事總監", web: "https://www.deakin.edu.au/", scores: {theory:7, practice:10, legal:6, health:8} }
+            { id: 15, name_en: "Deakin University", name_zh: "迪肯大學", region: "Oceania", track: "Applied", sports: ["Basketball"], tuition: "$42k/yr", duration: "2 Yr", courses_en: "Sport Marketing, Law", courses_zh: "運動行銷, 法律", alumni_en: "Tennis Aus Execs", alumni_zh: "澳網高層", career_en: "Event Director", career_zh: "賽事總監", web: "https://www.deakin.edu.au/", scores: {theory:7, practice:10, legal:6, health:8} },
+            
+            // PDF Added Programs
+            { id: 16, name_en: "UW Seattle - Foster", name_zh: "華盛頓大學 (Foster商學院)", region: "USA", track: "Applied", sports: ["AI/Data", "Basketball"], tuition: "$65k/yr", duration: "12 Mo (STEM)", courses_en: "Analytics for Firm Decisions, Experimental Design & AI", courses_zh: "企業決策分析, 實驗設計與AI", alumni_en: "Amazon/Microsoft Analysts", alumni_zh: "西雅圖科技業顧問", career_en: "Data Economist", career_zh: "數據經濟學家", web: "https://foster.uw.edu/", scores: {theory:8, practice:10, legal:5, health:4} },
+            { id: 17, name_en: "UW Seattle - Evans", name_zh: "華盛頓大學 (Evans學院)", region: "USA", track: "TechPolicy", sports: ["Healthcare", "TechPolicy"], tuition: "$60k/yr", duration: "2 Yr", courses_en: "Microeconomic Policy, Budgeting", courses_zh: "個體經濟政策, 預算編列", alumni_en: "Government/NGO Leaders", alumni_zh: "政府/非營利高層", career_en: "Health Policy Analyst", career_zh: "健康政策顧問", web: "https://evans.uw.edu/", scores: {theory:8, practice:8, legal:9, health:8} },
+            { id: 18, name_en: "UC San Diego - Rady", name_zh: "加州大學聖地牙哥分校 (Rady)", region: "USA", track: "Applied", sports: ["AI/Data", "Healthcare"], tuition: "$65k/yr", duration: "11 Mo (STEM)", courses_en: "GenAI/LLM Analytics, Machine Learning", courses_zh: "生成式AI分析, 機器學習", alumni_en: "BioTech/Tech Firm Consultants", alumni_zh: "南加州生技巨頭顧問", career_en: "AI Innovation Mgr", career_zh: "AI 創新經理", web: "https://rady.ucsd.edu/", scores: {theory:9, practice:10, legal:6, health:6} },
+            { id: 19, name_en: "UC San Diego - GPS", name_zh: "加州大學聖地牙哥分校 (GPS)", region: "USA", track: "TechPolicy", sports: ["TechPolicy", "AI/Data"], tuition: "$58k/yr", duration: "2 Yr (STEM)", courses_en: "Tech Regulation, GIS, Social Policy", courses_zh: "科技監管, 遙測技術, 社會政策", alumni_en: "Policy Makers", alumni_zh: "科技政策制定者", career_en: "Tech Policy Advisor", career_zh: "科技政策顧問", web: "https://gps.ucsd.edu/", scores: {theory:9, practice:8, legal:10, health:7} },
+            { id: 20, name_en: "UC San Diego - Wertheim", name_zh: "加州大學聖地牙哥分校 (MPH)", region: "USA", track: "Applied", sports: ["Healthcare", "Marathon"], tuition: "$55k/yr", duration: "2 Yr", courses_en: "Biostatistics, Precision Health, BIGE Model", courses_zh: "生物統計, 精準健康, BIGE模型", alumni_en: "Health System Admins", alumni_zh: "醫療系統管理層", career_en: "Healthcare Economist", career_zh: "健康經濟專家", web: "https://ph.ucsd.edu/", scores: {theory:7, practice:9, legal:7, health:10} }
         ];
 
         let activeChart = null, radarChart = null, synthesis = null, currentUtterance = null;
@@ -554,9 +559,9 @@
 
         function populateSelects() {
             const opts = (arr, prefix) => arr.map(x => `<option value="${x.val}">${dictionary[state.lang][prefix + x.key]}</option>`).join('');
-            document.getElementById('track-select').innerHTML = opts([{val:'all',key:'track_all'},{val:'Elite',key:'track_elite'},{val:'Applied',key:'track_applied'}], '');
+            document.getElementById('track-select').innerHTML = opts([{val:'all',key:'track_all'},{val:'Elite',key:'track_elite'},{val:'Applied',key:'track_applied'},{val:'TechPolicy',key:'track_tech_policy'}], '');
             document.getElementById('region-select').innerHTML = opts([{val:'all',key:'region_all'},{val:'USA',key:'region_usa'},{val:'Asia',key:'region_asia'},{val:'Oceania',key:'region_oce'}], '');
-            document.getElementById('sport-select').innerHTML = opts([{val:'all',key:'sport_all'},{val:'Volleyball',key:'sport_vb'},{val:'Baseball',key:'sport_bb'},{val:'Basketball',key:'sport_bkb'},{val:'Badminton',key:'sport_bad'},{val:'TableTennis',key:'sport_tt'},{val:'Marathon',key:'sport_mara'},{val:'Cycling',key:'sport_cyc'},{val:'Yoga',key:'sport_yoga'}], '');
+            document.getElementById('sport-select').innerHTML = opts([{val:'all',key:'sport_all'},{val:'AI/Data',key:'sport_ai_data'},{val:'TechPolicy',key:'sport_tech_policy'},{val:'Healthcare',key:'sport_healthcare'},{val:'Volleyball',key:'sport_vb'},{val:'Baseball',key:'sport_bb'},{val:'Basketball',key:'sport_bkb'},{val:'Badminton',key:'sport_bad'},{val:'TableTennis',key:'sport_tt'},{val:'Marathon',key:'sport_mara'},{val:'Cycling',key:'sport_cyc'},{val:'Yoga',key:'sport_yoga'}], '');
         }
 
         function initGlossary() {
@@ -599,7 +604,8 @@
         function renderResearchTabs() {
             const nav = document.getElementById('research-tabs-nav');
             const content = document.getElementById('research-content');
-            const tabs = ['elite', 'vb', 'silver', 'law'];
+            // Added ai_tech as the first tab
+            const tabs = ['ai_tech', 'elite', 'vb', 'silver', 'law'];
             nav.innerHTML = tabs.map(id => `<button onclick="switchTab('${id}')" class="px-5 py-3 font-serif font-bold text-xs uppercase tracking-widest transition-all whitespace-nowrap ${state.activeTab === id ? 'tab-active' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'}">${dictionary[state.lang]['tab_' + id]}</button>`).join('');
             const data = researchData[state.activeTab];
             const title = state.lang === 'zh' ? data.title_zh : data.title_en;
@@ -657,7 +663,13 @@
             const textColor = isDark ? '#9ca3af' : '#4b5563';
             const unit = dictionary[state.lang][researchData[state.activeTab].unitId];
             let config = { type: 'bar', data: {}, options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } };
-            if (state.activeTab === 'elite') { config.type = 'doughnut'; config.data = { labels: isZh ? ['理論', '政策', '管理'] : ['Theory', 'Policy', 'Mgmt'], datasets: [{ data: [50, 30, 20], backgroundColor: colors, borderColor: isDark ? '#111827' : '#fff', borderWidth: 2 }] }; }
+            
+            if (state.activeTab === 'ai_tech') { 
+                config.type = 'polarArea'; 
+                config.data = { labels: isZh ? ['生成式AI', '代理式AI', '實體AI'] : ['GenAI', 'Agentic AI', 'Physical AI'], datasets: [{ data: [40, 35, 25], backgroundColor: isDark ? ['rgba(16,185,129,0.7)', 'rgba(52,211,153,0.7)', 'rgba(107,114,128,0.7)'] : ['rgba(23,94,82,0.8)', 'rgba(45,138,118,0.8)', 'rgba(156,163,175,0.8)'] }] }; 
+                config.options.scales = { r: { grid: { color: isDark ? '#374151' : '#e5e7eb' }, ticks: { display: false } } };
+            }
+            else if (state.activeTab === 'elite') { config.type = 'doughnut'; config.data = { labels: isZh ? ['理論', '政策', '管理'] : ['Theory', 'Policy', 'Mgmt'], datasets: [{ data: [50, 30, 20], backgroundColor: colors, borderColor: isDark ? '#111827' : '#fff', borderWidth: 2 }] }; }
             else if (state.activeTab === 'vb') { config.data = { labels: isZh ? ['美國', '日本', '台灣'] : ['USA', 'Japan', 'Taiwan'], datasets: [{ label: isZh ? '成熟度' : 'Maturity', data: [5, 8, 2], backgroundColor: colors[0] }, { label: isZh ? '自由度' : 'Freedom', data: [9, 6, 3], backgroundColor: colors[2] }] }; config.options.scales = { x: { ticks: { color: textColor }, grid: { display: false } }, y: { title: { display: true, text: unit, color: textColor }, ticks: { color: textColor }, grid: { color: isDark ? '#374151' : '#e5e7eb' } } }; }
             else if (state.activeTab === 'silver') { config.type = 'line'; config.data = { labels: ['2025', '2030', '2035'], datasets: [{ label: isZh ? '預估節省' : 'Savings', data: [100, 150, 220], borderColor: colors[0], backgroundColor: isDark ? 'rgba(16,185,129,0.1)' : 'rgba(23,94,82,0.1)', fill: true, tension: 0.3 }] }; config.options.scales = { x: { ticks: { color: textColor }, grid: { display: false } }, y: { title: { display: true, text: unit, color: textColor }, ticks: { color: textColor }, grid: { color: isDark ? '#374151' : '#e5e7eb' } } }; }
             else { config.type = 'pie'; config.data = { labels: isZh ? ['合約', '反托拉斯', '智財'] : ['Contract', 'Antitrust', 'IP'], datasets: [{ data: [40, 35, 25], backgroundColor: colors, borderColor: isDark ? '#111827' : '#fff', borderWidth: 2 }] }; }
@@ -672,10 +684,11 @@
             else {
                 const lbl = dictionary[state.lang];
                 list.innerHTML = filtered.map(u => `
-                    <div class="bg-white dark:bg-gray-800 border-l-4 ${u.track === 'Elite' ? 'border-l-bcg-green dark:border-l-green-500' : 'border-l-gray-300 dark:border-l-gray-600'} border border-gray-200 dark:border-gray-700 card-hover">
+                    <div class="bg-white dark:bg-gray-800 border-l-4 ${u.track === 'Elite' ? 'border-l-bcg-green dark:border-l-green-500' : (u.track === 'TechPolicy' ? 'border-l-blue-500 dark:border-l-blue-400' : 'border-l-gray-300 dark:border-l-gray-600')} border border-gray-200 dark:border-gray-700 card-hover">
                         <div class="p-5 flex justify-between items-center cursor-pointer" onclick="toggleCard(${u.id})">
                             <div>
                                 ${u.track === 'Elite' ? `<span class="text-[10px] font-bold uppercase tracking-widest text-bcg-green dark:text-green-400 mb-1 block">★ ELITE TRACK</span>` : ''}
+                                ${u.track === 'TechPolicy' ? `<span class="text-[10px] font-bold uppercase tracking-widest text-blue-500 dark:text-blue-400 mb-1 block">⚖️ TECH & POLICY TRACK</span>` : ''}
                                 <h4 class="font-serif font-bold text-lg text-gray-900 dark:text-white">${state.lang === 'zh' ? u.name_zh : u.name_en}</h4>
                                 <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">${u.region} • ${u.sports[0]}</div>
                             </div>
